@@ -43,11 +43,11 @@ logger =  logging.getLogger(__name__)
 #         book.delete()
 
 # 汎用APIviewを継承したパターン
-# class BookListAPIView(generics.ListAPIView):
-#     queryset = Book.objects.all()
-#     serializer_class = BookSerializer
-#     filter_backends = [filters.DjangoFilterBackend]
-#     filterset_fields = '__all__'
+class BookListAPIView(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_fields = '__all__'
 
 # class BookRetrieveAPIView(generics.RetrieveAPIView):
 #     queryset = Book.objects.all()
@@ -61,15 +61,15 @@ logger =  logging.getLogger(__name__)
 #         logger.info("Book(id={}) created".format(response.data['id']))
 #         return response
 
-# class BookUpdateAPIView(generics.UpdateAPIView):
-#     queryset = Book.objects.all()
-#     serializer_class = BookSerializer
-
-# class BookDestroyAPIView(generics.DestroyAPIView):
-#     queryset = Book.objects.all()
-#     serializer_class = BookSerializer
-
-# ModelViewSetを継承したパターン
-class BookViewSet(viewsets.ModelViewSet):
+class BookUpdateAPIView(generics.UpdateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+class BookDestroyAPIView(generics.DestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+# ModelViewSetを継承したパターン
+# class BookViewSet(viewsets.ModelViewSet):
+#     queryset = Book.objects.all()
+#     serializer_class = BookSerializer
