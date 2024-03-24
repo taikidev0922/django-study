@@ -35,3 +35,4 @@ class BookStock(models.Model):
     book = models.OneToOneField(Book,verbose_name='本',on_delete=models.CASCADE)
     quantity = models.IntegerField(verbose_name='在庫数',default=0)
 
+
