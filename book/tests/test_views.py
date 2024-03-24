@@ -1,6 +1,8 @@
 from rest_framework.test import APITestCase
 from book.models import Book
 from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 
 class TestBookUpdateAPIView(APITestCase):
@@ -11,9 +13,10 @@ class TestBookUpdateAPIView(APITestCase):
             username='testuser',
             password='testpassword'
         )
-    TARGET_URL_WITH_PK = '/api/books/{}/'
+    TARGET_URL_WITH_PK = '/api/books/update/{}/'
     def test_update_success(self):
-        self.client.force_authenticate(user=self.user)
+        token = str(RefreshToken.for_user(self.user).access_token)
+        self.client.credentials(HTTP_AUTHORIZATION=f'JWT {token}')
 
         book = Book.objects.create(
             title='aaa',
@@ -24,6 +27,7 @@ class TestBookUpdateAPIView(APITestCase):
             'title':'bbb',
             'price':222
         }
+        print(book.id)
         response = self.client.put(
             self.TARGET_URL_WITH_PK.format(book.id),
             params,
@@ -32,7 +36,7 @@ class TestBookUpdateAPIView(APITestCase):
         self.assertEqual(response.status_code,200)
         book = Book.objects.get(id=book.id)
         expected_json_dict = {
-            'id':book.id,
+            'id':str(book.id),
             'title':'bbb',
             'price':222
         }
