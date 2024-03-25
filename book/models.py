@@ -4,7 +4,7 @@ import uuid
 class Publisher(models.Model):
     class Meta:
         db_table = 'publisher'
-    
+
     id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     name = models.CharField(verbose_name='出版社名',max_length=100,unique=True)
     created_at = models.DateTimeField(verbose_name='登録日',auto_now_add=True)
@@ -12,7 +12,7 @@ class Publisher(models.Model):
 class Author(models.Model):
     class Meta:
         db_table = 'author'
-    
+
     id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     name = models.CharField(verbose_name='著者名',max_length=100,unique=True)
     created_at = models.DateTimeField(verbose_name='登録日',auto_now_add=True)

@@ -36,7 +36,7 @@ logger =  logging.getLogger(__name__)
 #         book = Book.objects.get(pk=pk)
 #         serializer = BookSerializer(isinstance=book)
 #         return Response(serializer.data)
-    
+
 # class BookDestroyAPIView(views.APIView):
 #     def delete(self,request,pk,*args,**kwargs):
 #         book = Book.objects.get(pk=pk)

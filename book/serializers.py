@@ -8,7 +8,7 @@ from django.core.validators import RegexValidator
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ['id', 'title', 'price']
+        fields = ['id', 'title', 'price','created_at']
         validators = [
             UniqueTogetherValidator(
                 queryset=Book.objects.all(),

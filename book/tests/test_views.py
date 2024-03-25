@@ -27,7 +27,6 @@ class TestBookUpdateAPIView(APITestCase):
             'title':'bbb',
             'price':222
         }
-        print(book.id)
         response = self.client.put(
             self.TARGET_URL_WITH_PK.format(book.id),
             params,
@@ -38,7 +37,8 @@ class TestBookUpdateAPIView(APITestCase):
         expected_json_dict = {
             'id':str(book.id),
             'title':'bbb',
-            'price':222
+            'price':222,
+            'created_at': book.created_at.isoformat().replace('+00:00', 'Z'),
         }
         self.assertJSONEqual(response.content,expected_json_dict)
 
